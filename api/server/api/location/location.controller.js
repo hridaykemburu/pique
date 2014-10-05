@@ -4,7 +4,8 @@ var config = require('../../config/environment');
 var _ = require('lodash'),
     geolib = require('geolib'),
     GooglePlaces = require('google-places'),
-    places = new GooglePlaces(config.secrets.PLACES_API);
+    places = new GooglePlaces(config.secrets.PLACES_API),
+    request = require('request');
 var Location = require('./location.model');
 var Post = require('../post/post.model');
 
@@ -82,14 +83,27 @@ function nearbyLocations(lat, lon, term, success, error) {
     longitude: lon
   };
 
-  var query = {location: [lat, lon], radius: 2000};
+  var query = {
+    proxy: process.env.QUOTAGUARDSTATIC_URL,
+    url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json',
+    json: true,
+    qs: {
+      key: config.secrets.PLACES_API,
+      location: [lat, lon].join(','),
+      radius: 2000
+    },
+    headers: {
+      'User-Agent': 'node.js'
+    }
+  };
+
   if (term) {
-    query.keyword = term;
+    query.qs.keyword = term;
   }
 
-  places.search(query, function(err, res) {
+  request(query, function(err, res, body) {
     var locations = [];
-    var filtered = _.filter(res.results, function(r) {
+    var filtered = _.filter(body.results, function(r) {
       return !_.contains(r.types, 'political');
     })
     _.each(filtered, function(l) {

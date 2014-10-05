@@ -1,10 +1,11 @@
 'use strict';
 
-var keys = require('../../config/local.env.js');
+var config = require('../../config/environment');
 var _ = require('lodash'),
     geolib = require('geolib'),
     GooglePlaces = require('google-places'),
-    places = new GooglePlaces(keys.PLACES_API_KEY);
+    places = new GooglePlaces(config.secrets.PLACES_API),
+    request = require('request');
 var Phone = require('./phone.model');
 var Post = require('../post/post.model');
 var Location = require('../location/location.model');
@@ -107,8 +108,22 @@ function updateLocation(phone, old, success, error) {
     longitude: lon
   };
 
-  places.search({location: [lat, lon], radius: 20}, function(err, res) {
-    var filtered = _.filter(res.results, function(r) {
+  var query = {
+    proxy: process.env.QUOTAGUARDSTATIC_URL,
+    url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json',
+    json: true,
+    qs: {
+      key: config.secrets.PLACES_API,
+      location: [lat, lon].join(','),
+      radius: 20
+    },
+    headers: {
+      'User-Agent': 'node.js'
+    }
+  };
+
+  request(query, function(err, res, body) {
+    var filtered = _.filter(body.results, function(r) {
       return !_.contains(r.types, 'political');
     });
 
