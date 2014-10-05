@@ -15,7 +15,9 @@
     NSString *longitude;
     NSString *lat;
     NSArray *jsonArray;
-    
+    NSArray *comments;
+    float longT;
+    float laT;
 }
 
 @end
@@ -46,51 +48,6 @@
     _locationTableView.dataSource = self;
     _locationTableView.delegate = self;
     
-    
-    //POST request
-    NSString *post = [NSString stringWithFormat:@"test=Message&this=isNotReal"];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    
-    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc] init];
-    [postRequest setURL:[NSURL URLWithString:@"http://192.168.0.114:9000/api/phones"]];
-    [postRequest setHTTPMethod:@"POST"];
-    [postRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [postRequest setHTTPBody:postData];
-    
-    NSURLResponse *postRequestResponse;
-    NSData *postRequestHandler = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&postRequestResponse error:nil];
-    
-    NSString *postRequestReply = [[NSString alloc] initWithBytes:[postRequestHandler bytes] length:[postRequestHandler length] encoding:NSASCIIStringEncoding];
-    //NSLog(@"requestReply: %@", postRequestReply);
-    
-//    //GET request
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    NSString *urlLoc = @"http://192.168.0.114:9000/api/locations?lat=";
-//    NSString *urlTwo = @"&lon=";
-//    NSString *finalURL = [[NSString stringWithFormat:@"%@/%@/%@/%@", urlLoc, lat, urlTwo, longitude] copy];
-//    NSLog(finalURL);
-//    [request setURL:[NSURL URLWithString:finalURL]];
-//    [request setHTTPMethod:@"GET"];
-//    
-//    NSURLResponse *requestResponse;
-//    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
-//    
-//    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-//    
-//    NSData *data = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    NSError *e = nil;
-//    jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &e];
-//    
-//    if (!jsonArray) {
-//        NSLog(@"Error parsing JSON: %@", e);
-//    } else {
-////        for(NSDictionary *item in jsonArray) {
-////            NSLog(@"Item: %@", item);
-////        }
-//    }
 }
 
 #pragma mark - MKMapViewDelegate methods.
@@ -115,6 +72,8 @@
     
     if (currentLocation != nil) {
         //float long = currentLocation.coordinate.longitude;
+        longT = currentLocation.coordinate.longitude;
+        laT = currentLocation.coordinate.longitude;
         longitude = [[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude] copy];
         lat = [[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude] copy];
         NSLog(longitude);
@@ -142,12 +101,76 @@
         if (!jsonArray) {
             NSLog(@"Error parsing JSON: %@", e);
         } else {
-            //        for(NSDictionary *item in jsonArray) {
-            //            NSLog(@"Item: %@", item);
-            //        }
+//            for(NSDictionary *item in jsonArray) {
+//                NSLog(@"Item: %@", item);
+//            }
+        }
+        
+        //POST request
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults objectForKey:@"uniqueID"]) {
+            NSLog(@"uniqueID already created");
+            NSLog([defaults objectForKey:@"uniqueID"]);
+            NSDictionary *h = [defaults objectForKey:@"uniqueID"];
+            NSLog(h);
+            //NSLog([h objectForKey:@"history"]);
+            NSDictionary *tmp = @{
+                                  @"lat":lat,
+                                  @"lon":longitude,
+                                  };
+            NSError *error;
+            NSData *postData = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error];
+            //[request setHTTPBody:postData];
+
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            
+            NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc] init];
+            NSString *firstURL = @"http://192.168.0.114:9000/api/phones/";
+            NSString *secondURL = [defaults objectForKey:@"uniqueID"];
+            NSString *thirdURL = @"/location";
+            NSString *finalURL = [[NSString stringWithFormat:@"%@%@%@", firstURL, secondURL, thirdURL] copy];
+            [postRequest setURL:[NSURL URLWithString:finalURL]];
+            [postRequest setHTTPMethod:@"POST"];
+            [postRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [postRequest setHTTPBody:postData];
+            
+            NSURLResponse *postRequestResponse;
+            NSData *postRequestHandler = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&postRequestResponse error:nil];
+            
+            NSString *postRequestReply = [[NSString alloc] initWithBytes:[postRequestHandler bytes] length:[postRequestHandler length] encoding:NSASCIIStringEncoding];
+            NSLog(@"requestReply: %@", postRequestReply);
+            
+            //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            //[defaults setObject:postRequestReply forKey:@"uniqueID"];
+            //[defaults synchronize];
+        } else {
+            NSLog(@"uniqueID created");
+            NSString *post = [NSString stringWithFormat:nil];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            
+            NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+            
+            NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc] init];
+            [postRequest setURL:[NSURL URLWithString:@"http://192.168.0.114:9000/api/phones"]];
+            [postRequest setHTTPMethod:@"POST"];
+            [postRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [postRequest setHTTPBody:postData];
+            
+            NSURLResponse *postRequestResponse;
+            NSData *postRequestHandler = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&postRequestResponse error:nil];
+            
+            NSString *postRequestReply = [[NSString alloc] initWithBytes:[postRequestHandler bytes] length:[postRequestHandler length] encoding:NSASCIIStringEncoding];
+            NSLog(@"requestReply: %@", postRequestReply);
+            
+            //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            //NSDictionary *tempID = (NSDictionary) postRequestReply;
+            //NSString *myID = [tempID objectForKey:@"_id"];
+            //[defaults setObject:myID forKey:@"uniqueID"];
+            [defaults synchronize];
         }
     }
     [locationManager stopUpdatingLocation];
+    [_locationTableView reloadData];
 }
 
 
@@ -209,6 +232,7 @@
     currentTitle = [currentPlace objectForKey:@"name"];
     int pop = [[currentPlace objectForKey:@"population"] intValue];
     numPeople = [NSString stringWithFormat:@"%d", pop];
+    comments = [currentPlace objectForKey:@"comments"];
     [self performSegueWithIdentifier:@"toPost" sender:self];
 }
 
@@ -225,6 +249,9 @@
         //forumVC.post = selectedPost;
         postVC.title = currentTitle;
         postVC.numPeople = [NSString stringWithFormat:@"%@%@", numPeople, @" people here"];
+        postVC.longitude = longT;
+        postVC.lat = laT;
+        postVC.posts = comments;
     }
 }
 

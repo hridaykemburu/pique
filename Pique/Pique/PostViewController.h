@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *numPeopleLabel;
 @property NSString *numPeople;
 @property NSString *title;
+@property float lat;
+@property float longitude;
+@property NSArray *posts;
 @property (weak, nonatomic) IBOutlet UIToolbar *postToolBar;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
