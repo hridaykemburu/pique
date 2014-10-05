@@ -10,11 +10,25 @@
 		A3F4ADF419E0A23000ED8E8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4ADF319E0A23000ED8E8D /* main.m */; };
 		A3F4ADF719E0A23000ED8E8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4ADF619E0A23000ED8E8D /* AppDelegate.m */; };
 		A3F4ADFF19E0A23000ED8E8D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3F4ADFE19E0A23000ED8E8D /* Images.xcassets */; };
-		A3F4AE0219E0A23000ED8E8D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE0019E0A23000ED8E8D /* LaunchScreen.xib */; };
 		A3F4AE0E19E0A23000ED8E8D /* PiqueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE0D19E0A23000ED8E8D /* PiqueTests.m */; };
-		A3F4AE1B19E0A4A000ED8E8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE1919E0A4A000ED8E8D /* Main.storyboard */; };
-		A3F4AE2219E0A68100ED8E8D /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE2119E0A68100ED8E8D /* LocationTableViewController.m */; };
-		A3F4AE2419E0AEE100ED8E8D /* LocationTabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE2319E0AEE100ED8E8D /* LocationTabelCell.xib */; };
+		A3F4AE2A19E0B24100ED8E8D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE2919E0B24100ED8E8D /* QuartzCore.framework */; };
+		A3F4AE2C19E0B24600ED8E8D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE2B19E0B24600ED8E8D /* CoreLocation.framework */; };
+		A3F4AE2E19E0B24B00ED8E8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE2D19E0B24B00ED8E8D /* CoreGraphics.framework */; };
+		A3F4AE3719E0CBA600ED8E8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE3619E0CBA600ED8E8D /* Foundation.framework */; };
+		A3F4AE3919E0CBBF00ED8E8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE3819E0CBBF00ED8E8D /* UIKit.framework */; };
+		A3F4AE3B19E0CC2C00ED8E8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE1919E0A4A000ED8E8D /* Main.storyboard */; };
+		A3F4AE3C19E0CC3200ED8E8D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE0019E0A23000ED8E8D /* LaunchScreen.xib */; };
+		A3F4AE7D19E0D95200ED8E8D /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE7C19E0D95200ED8E8D /* LocationViewController.m */; };
+		A3F4AE7F19E0DBD400ED8E8D /* LocationTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */; };
+		A3F4AE8519E0DCE000ED8E8D /* LocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */; };
+		A3F4AE8719E0E82300ED8E8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE8619E0E82300ED8E8D /* MapKit.framework */; };
+		A3F4AE8A19E0EF5600ED8E8D /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */; };
+		A3F4AE8E19E0EFB700ED8E8D /* PostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */; };
+		A3F4AE9119E0F03400ED8E8D /* PostTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */; };
+		A3F4AE9519E10ACA00ED8E8D /* collapse3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE9319E10ACA00ED8E8D /* collapse3.png */; };
+		A3F4AE9619E10ACA00ED8E8D /* expand22.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE9419E10ACA00ED8E8D /* expand22.png */; };
+		A3F4AE9819E11BFE00ED8E8D /* multiple25.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE9719E11BFE00ED8E8D /* multiple25.png */; };
+		A3F4AE9C19E11CE200ED8E8D /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE9B19E11CE200ED8E8D /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,9 +53,27 @@
 		A3F4AE0C19E0A23000ED8E8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3F4AE0D19E0A23000ED8E8D /* PiqueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PiqueTests.m; sourceTree = "<group>"; };
 		A3F4AE1A19E0A4A000ED8E8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Pique/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A3F4AE2019E0A68100ED8E8D /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableViewController.h; sourceTree = "<group>"; };
-		A3F4AE2119E0A68100ED8E8D /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableViewController.m; sourceTree = "<group>"; };
-		A3F4AE2319E0AEE100ED8E8D /* LocationTabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationTabelCell.xib; sourceTree = "<group>"; };
+		A3F4AE2919E0B24100ED8E8D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A3F4AE2B19E0B24600ED8E8D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A3F4AE2D19E0B24B00ED8E8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A3F4AE3619E0CBA600ED8E8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A3F4AE3819E0CBBF00ED8E8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A3F4AE7B19E0D95200ED8E8D /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		A3F4AE7C19E0D95200ED8E8D /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationTableCell.xib; sourceTree = "<group>"; };
+		A3F4AE8319E0DCE000ED8E8D /* LocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableCell.h; sourceTree = "<group>"; };
+		A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableCell.m; sourceTree = "<group>"; };
+		A3F4AE8619E0E82300ED8E8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A3F4AE8819E0EF5600ED8E8D /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableCell.xib; sourceTree = "<group>"; };
+		A3F4AE8F19E0F03400ED8E8D /* PostTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableCell.h; sourceTree = "<group>"; };
+		A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableCell.m; sourceTree = "<group>"; };
+		A3F4AE9319E10ACA00ED8E8D /* collapse3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collapse3.png; path = "../../Pictures/app images/collapse3.png"; sourceTree = "<group>"; };
+		A3F4AE9419E10ACA00ED8E8D /* expand22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = expand22.png; path = "../../Pictures/app images/expand22.png"; sourceTree = "<group>"; };
+		A3F4AE9719E11BFE00ED8E8D /* multiple25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multiple25.png; path = "../../Pictures/app images/multiple25.png"; sourceTree = "<group>"; };
+		A3F4AE9A19E11CE200ED8E8D /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		A3F4AE9B19E11CE200ED8E8D /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +81,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F4AE8719E0E82300ED8E8D /* MapKit.framework in Frameworks */,
+				A3F4AE3919E0CBBF00ED8E8D /* UIKit.framework in Frameworks */,
+				A3F4AE3719E0CBA600ED8E8D /* Foundation.framework in Frameworks */,
+				A3F4AE2E19E0B24B00ED8E8D /* CoreGraphics.framework in Frameworks */,
+				A3F4AE2C19E0B24600ED8E8D /* CoreLocation.framework in Frameworks */,
+				A3F4AE2A19E0B24100ED8E8D /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +106,8 @@
 				A3F4ADF019E0A23000ED8E8D /* Pique */,
 				A3F4AE0A19E0A23000ED8E8D /* PiqueTests */,
 				A3F4ADEF19E0A23000ED8E8D /* Products */,
+				A3F4AE9219E10AA000ED8E8D /* Images */,
+				A3F4AE2819E0B23300ED8E8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,11 +126,13 @@
 				A3F4ADF519E0A23000ED8E8D /* AppDelegate.h */,
 				A3F4ADF619E0A23000ED8E8D /* AppDelegate.m */,
 				A3F4AE1919E0A4A000ED8E8D /* Main.storyboard */,
-				A3F4AE1C19E0A4AD00ED8E8D /* Controllers */,
+				A3F4AE9919E11CAE00ED8E8D /* Models */,
+				A3F4AE7A19E0D71900ED8E8D /* View Controllers */,
 				A3F4ADFE19E0A23000ED8E8D /* Images.xcassets */,
 				A3F4AE0019E0A23000ED8E8D /* LaunchScreen.xib */,
 				A3F4ADF119E0A23000ED8E8D /* Supporting Files */,
-				A3F4AE2319E0AEE100ED8E8D /* LocationTabelCell.xib */,
+				A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */,
+				A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */,
 			);
 			path = Pique;
 			sourceTree = "<group>";
@@ -121,13 +163,51 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A3F4AE1C19E0A4AD00ED8E8D /* Controllers */ = {
+		A3F4AE2819E0B23300ED8E8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A3F4AE2019E0A68100ED8E8D /* LocationTableViewController.h */,
-				A3F4AE2119E0A68100ED8E8D /* LocationTableViewController.m */,
+				A3F4AE8619E0E82300ED8E8D /* MapKit.framework */,
+				A3F4AE3819E0CBBF00ED8E8D /* UIKit.framework */,
+				A3F4AE3619E0CBA600ED8E8D /* Foundation.framework */,
+				A3F4AE2D19E0B24B00ED8E8D /* CoreGraphics.framework */,
+				A3F4AE2B19E0B24600ED8E8D /* CoreLocation.framework */,
+				A3F4AE2919E0B24100ED8E8D /* QuartzCore.framework */,
 			);
-			name = Controllers;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3F4AE7A19E0D71900ED8E8D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3F4AE7B19E0D95200ED8E8D /* LocationViewController.h */,
+				A3F4AE7C19E0D95200ED8E8D /* LocationViewController.m */,
+				A3F4AE8319E0DCE000ED8E8D /* LocationTableCell.h */,
+				A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */,
+				A3F4AE8819E0EF5600ED8E8D /* PostViewController.h */,
+				A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */,
+				A3F4AE8F19E0F03400ED8E8D /* PostTableCell.h */,
+				A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A3F4AE9219E10AA000ED8E8D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A3F4AE9719E11BFE00ED8E8D /* multiple25.png */,
+				A3F4AE9319E10ACA00ED8E8D /* collapse3.png */,
+				A3F4AE9419E10ACA00ED8E8D /* expand22.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		A3F4AE9919E11CAE00ED8E8D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3F4AE9A19E11CE200ED8E8D /* Post.h */,
+				A3F4AE9B19E11CE200ED8E8D /* Post.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,10 +290,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3F4AE1B19E0A4A000ED8E8D /* Main.storyboard in Resources */,
-				A3F4AE0219E0A23000ED8E8D /* LaunchScreen.xib in Resources */,
+				A3F4AE9519E10ACA00ED8E8D /* collapse3.png in Resources */,
+				A3F4AE3C19E0CC3200ED8E8D /* LaunchScreen.xib in Resources */,
+				A3F4AE9619E10ACA00ED8E8D /* expand22.png in Resources */,
+				A3F4AE3B19E0CC2C00ED8E8D /* Main.storyboard in Resources */,
+				A3F4AE9819E11BFE00ED8E8D /* multiple25.png in Resources */,
 				A3F4ADFF19E0A23000ED8E8D /* Images.xcassets in Resources */,
-				A3F4AE2419E0AEE100ED8E8D /* LocationTabelCell.xib in Resources */,
+				A3F4AE7F19E0DBD400ED8E8D /* LocationTableCell.xib in Resources */,
+				A3F4AE8E19E0EFB700ED8E8D /* PostTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,9 +315,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F4AE9119E0F03400ED8E8D /* PostTableCell.m in Sources */,
 				A3F4ADF719E0A23000ED8E8D /* AppDelegate.m in Sources */,
+				A3F4AE7D19E0D95200ED8E8D /* LocationViewController.m in Sources */,
 				A3F4ADF419E0A23000ED8E8D /* main.m in Sources */,
-				A3F4AE2219E0A68100ED8E8D /* LocationTableViewController.m in Sources */,
+				A3F4AE8519E0DCE000ED8E8D /* LocationTableCell.m in Sources */,
+				A3F4AE8A19E0EF5600ED8E8D /* PostViewController.m in Sources */,
+				A3F4AE9C19E11CE200ED8E8D /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +513,7 @@
 				A3F4AE1319E0A23000ED8E8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3F4AE1419E0A23000ED8E8D /* Build configuration list for PBXNativeTarget "PiqueTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +522,7 @@
 				A3F4AE1619E0A23000ED8E8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
