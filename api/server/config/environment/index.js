@@ -28,7 +28,8 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'pique-secret'
+    session: 'pique-secret',
+    PLACES_API: process.env.PLACES_API_KEY
   },
 
   // List of user roles

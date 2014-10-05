@@ -1,10 +1,10 @@
 'use strict';
 
-var keys = require('../../config/local.env.js');
+var config = require('../../config/environment');
 var _ = require('lodash'),
     geolib = require('geolib'),
     GooglePlaces = require('google-places'),
-    places = new GooglePlaces(keys.PLACES_API_KEY);
+    places = new GooglePlaces(config.secrets.PLACES_API);
 var Location = require('./location.model');
 var Post = require('../post/post.model');
 
