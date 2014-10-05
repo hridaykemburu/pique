@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationTableCell.h"
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface LocationViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface LocationViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate,CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
+}
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBarOutlet;
 @property (weak, nonatomic) IBOutlet UITableView *locationTableView;
+@property (weak, nonatomic) IBOutlet MKMapView *mapViewOutlet;
 
 @end

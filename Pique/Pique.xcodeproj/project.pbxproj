@@ -21,6 +21,7 @@
 		A3F4AE7D19E0D95200ED8E8D /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE7C19E0D95200ED8E8D /* LocationViewController.m */; };
 		A3F4AE7F19E0DBD400ED8E8D /* LocationTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */; };
 		A3F4AE8519E0DCE000ED8E8D /* LocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */; };
+		A3F4AE8719E0E82300ED8E8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE8619E0E82300ED8E8D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationTableCell.xib; sourceTree = "<group>"; };
 		A3F4AE8319E0DCE000ED8E8D /* LocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableCell.h; sourceTree = "<group>"; };
 		A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableCell.m; sourceTree = "<group>"; };
+		A3F4AE8619E0E82300ED8E8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F4AE8719E0E82300ED8E8D /* MapKit.framework in Frameworks */,
 				A3F4AE3919E0CBBF00ED8E8D /* UIKit.framework in Frameworks */,
 				A3F4AE3719E0CBA600ED8E8D /* Foundation.framework in Frameworks */,
 				A3F4AE2E19E0B24B00ED8E8D /* CoreGraphics.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		A3F4AE2819E0B23300ED8E8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3F4AE8619E0E82300ED8E8D /* MapKit.framework */,
 				A3F4AE3819E0CBBF00ED8E8D /* UIKit.framework */,
 				A3F4AE3619E0CBA600ED8E8D /* Foundation.framework */,
 				A3F4AE2D19E0B24B00ED8E8D /* CoreGraphics.framework */,
