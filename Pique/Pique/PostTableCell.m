@@ -20,4 +20,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)upVote:(id)sender {
+}
+
+- (IBAction)downVote:(id)sender {
+}
 @end

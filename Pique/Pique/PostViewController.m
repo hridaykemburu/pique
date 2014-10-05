@@ -15,10 +15,14 @@
 @implementation PostViewController
 
 @synthesize postTableView = _postTableView;
+@synthesize numPeopleLabel = _numPeopleLabel;
+@synthesize numPeople = _numPeople;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(_numPeople);
+    _numPeopleLabel.text = [_numPeople copy];
     
     //map
     self.postMap.delegate = self;
@@ -102,6 +106,14 @@
     return 65;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"HELLO");
+    //selectedPost = [posts objectAtIndex:indexPath.row];
+    //currentTitle = @"Test Title";
+    //numPeople = @"100";
+    //[self performSegueWithIdentifier:@"toPost" sender:self];
+}
 
 
 /*

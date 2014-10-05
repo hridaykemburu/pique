@@ -25,6 +25,10 @@
 		A3F4AE8A19E0EF5600ED8E8D /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */; };
 		A3F4AE8E19E0EFB700ED8E8D /* PostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */; };
 		A3F4AE9119E0F03400ED8E8D /* PostTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */; };
+		A3F4AE9519E10ACA00ED8E8D /* collapse3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE9319E10ACA00ED8E8D /* collapse3.png */; };
+		A3F4AE9619E10ACA00ED8E8D /* expand22.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE9419E10ACA00ED8E8D /* expand22.png */; };
+		A3F4AE9819E11BFE00ED8E8D /* multiple25.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE9719E11BFE00ED8E8D /* multiple25.png */; };
+		A3F4AE9C19E11CE200ED8E8D /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE9B19E11CE200ED8E8D /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,11 @@
 		A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableCell.xib; sourceTree = "<group>"; };
 		A3F4AE8F19E0F03400ED8E8D /* PostTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableCell.h; sourceTree = "<group>"; };
 		A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableCell.m; sourceTree = "<group>"; };
+		A3F4AE9319E10ACA00ED8E8D /* collapse3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collapse3.png; path = "../../Pictures/app images/collapse3.png"; sourceTree = "<group>"; };
+		A3F4AE9419E10ACA00ED8E8D /* expand22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = expand22.png; path = "../../Pictures/app images/expand22.png"; sourceTree = "<group>"; };
+		A3F4AE9719E11BFE00ED8E8D /* multiple25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multiple25.png; path = "../../Pictures/app images/multiple25.png"; sourceTree = "<group>"; };
+		A3F4AE9A19E11CE200ED8E8D /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		A3F4AE9B19E11CE200ED8E8D /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +106,7 @@
 				A3F4ADF019E0A23000ED8E8D /* Pique */,
 				A3F4AE0A19E0A23000ED8E8D /* PiqueTests */,
 				A3F4ADEF19E0A23000ED8E8D /* Products */,
+				A3F4AE9219E10AA000ED8E8D /* Images */,
 				A3F4AE2819E0B23300ED8E8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +126,7 @@
 				A3F4ADF519E0A23000ED8E8D /* AppDelegate.h */,
 				A3F4ADF619E0A23000ED8E8D /* AppDelegate.m */,
 				A3F4AE1919E0A4A000ED8E8D /* Main.storyboard */,
+				A3F4AE9919E11CAE00ED8E8D /* Models */,
 				A3F4AE7A19E0D71900ED8E8D /* View Controllers */,
 				A3F4ADFE19E0A23000ED8E8D /* Images.xcassets */,
 				A3F4AE0019E0A23000ED8E8D /* LaunchScreen.xib */,
@@ -178,6 +189,25 @@
 				A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A3F4AE9219E10AA000ED8E8D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A3F4AE9719E11BFE00ED8E8D /* multiple25.png */,
+				A3F4AE9319E10ACA00ED8E8D /* collapse3.png */,
+				A3F4AE9419E10ACA00ED8E8D /* expand22.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		A3F4AE9919E11CAE00ED8E8D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3F4AE9A19E11CE200ED8E8D /* Post.h */,
+				A3F4AE9B19E11CE200ED8E8D /* Post.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,8 +290,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F4AE9519E10ACA00ED8E8D /* collapse3.png in Resources */,
 				A3F4AE3C19E0CC3200ED8E8D /* LaunchScreen.xib in Resources */,
+				A3F4AE9619E10ACA00ED8E8D /* expand22.png in Resources */,
 				A3F4AE3B19E0CC2C00ED8E8D /* Main.storyboard in Resources */,
+				A3F4AE9819E11BFE00ED8E8D /* multiple25.png in Resources */,
 				A3F4ADFF19E0A23000ED8E8D /* Images.xcassets in Resources */,
 				A3F4AE7F19E0DBD400ED8E8D /* LocationTableCell.xib in Resources */,
 				A3F4AE8E19E0EFB700ED8E8D /* PostTableCell.xib in Resources */,
@@ -288,6 +321,7 @@
 				A3F4ADF419E0A23000ED8E8D /* main.m in Sources */,
 				A3F4AE8519E0DCE000ED8E8D /* LocationTableCell.m in Sources */,
 				A3F4AE8A19E0EF5600ED8E8D /* PostViewController.m in Sources */,
+				A3F4AE9C19E11CE200ED8E8D /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

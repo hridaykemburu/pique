@@ -12,5 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *postTextView;
 @property (weak, nonatomic) IBOutlet UILabel *numLikes;
+- (IBAction)upVote:(id)sender;
+- (IBAction)downVote:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *upVoteButton;
+@property (weak, nonatomic) IBOutlet UIButton *downVoteButton;
 
 @end

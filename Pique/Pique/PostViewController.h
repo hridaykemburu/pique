@@ -18,11 +18,13 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *postTableView;
 @property (weak, nonatomic) IBOutlet MKMapView *postMap;
-//@property (weak, nonatomic) IBOutlet UILabel *numPeopleLabel;
-//@property NSString *title;
+@property (weak, nonatomic) IBOutlet UILabel *numPeopleLabel;
+@property NSString *numPeople;
+@property NSString *title;
 @property (weak, nonatomic) IBOutlet UIToolbar *postToolBar;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 - (IBAction)postComment:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *populationLabel;
 
 @end

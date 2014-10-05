@@ -9,15 +9,13 @@
 #import "LocationViewController.h"
 
 @interface LocationViewController () {
-    NSMutableArray *locations;
-    NSDictionary *locationOne;
-    NSDictionary *locationTwo;
-    NSDictionary *locationThree;
-    NSDictionary *locationFour;
     NSArray *searchResults;
-    NSMutableArray *loc;
     NSString *currentTitle;
     NSString *numPeople;
+    NSString *longitude;
+    NSString *lat;
+    NSArray *jsonArray;
+    
 }
 
 @end
@@ -41,41 +39,58 @@
     [locationManager setDistanceFilter:kCLDistanceFilterNone];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [locationManager requestWhenInUseAuthorization];
-    //[locationManager startUpdatingLocation];
+    [locationManager startUpdatingLocation];
+    //[locationManager stopUpdatingLocation];
     
+    //populate table data
     _locationTableView.dataSource = self;
     _locationTableView.delegate = self;
-    loc = [NSArray arrayWithObject:@"Location"];
-    locations = [[NSMutableArray alloc] init];
-    locationOne = [[NSMutableDictionary alloc] init];
-    locationTwo = [[NSMutableDictionary alloc] init];
-    locationThree = [[NSMutableDictionary alloc] init];
-    locationFour = [[NSMutableDictionary alloc] init];
-    locationOne = @{
-                    @"Location" : @"RSF",
-                    @"Coordinates" : [NSArray arrayWithObjects:[NSNumber numberWithInt:19], [NSNumber numberWithInt:19], nil],
-                    @"numPeople" : [NSNumber numberWithInt:123],
-                    };
-    locationTwo = @{
-                    @"Location" : @"Moffit",
-                    @"Coordinates" : [NSArray arrayWithObjects:[NSNumber numberWithInt:19], [NSNumber numberWithInt:19], nil],
-                    @"numPeople" : [NSNumber numberWithInt:457],
-                    };
-    locationThree = @{
-                    @"Location" : @"Soda Hall",
-                    @"Coordinates" : [NSArray arrayWithObjects:[NSNumber numberWithInt:19], [NSNumber numberWithInt:19], nil],
-                    @"numPeople" : [NSNumber numberWithInt:340],
-                    };
-    locationFour = @{
-                      @"Location" : @"Memorial Stadium",
-                      @"Coordinates" : [NSArray arrayWithObjects:[NSNumber numberWithInt:1000], [NSNumber numberWithInt:500], nil],
-                      @"numPeople" : [NSNumber numberWithInt:2500],
-                      };
-    [locations addObject:locationOne];
-    [locations addObject:locationTwo];
-    [locations addObject:locationThree];
-    [locations addObject:locationFour];
-    NSLog(@"%lu", (unsigned long)[locations count]);
+    
+    
+    //POST request
+    NSString *post = [NSString stringWithFormat:@"test=Message&this=isNotReal"];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    
+    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc] init];
+    [postRequest setURL:[NSURL URLWithString:@"http://192.168.0.114:9000/api/phones"]];
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [postRequest setHTTPBody:postData];
+    
+    NSURLResponse *postRequestResponse;
+    NSData *postRequestHandler = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&postRequestResponse error:nil];
+    
+    NSString *postRequestReply = [[NSString alloc] initWithBytes:[postRequestHandler bytes] length:[postRequestHandler length] encoding:NSASCIIStringEncoding];
+    //NSLog(@"requestReply: %@", postRequestReply);
+    
+//    //GET request
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//    NSString *urlLoc = @"http://192.168.0.114:9000/api/locations?lat=";
+//    NSString *urlTwo = @"&lon=";
+//    NSString *finalURL = [[NSString stringWithFormat:@"%@/%@/%@/%@", urlLoc, lat, urlTwo, longitude] copy];
+//    NSLog(finalURL);
+//    [request setURL:[NSURL URLWithString:finalURL]];
+//    [request setHTTPMethod:@"GET"];
+//    
+//    NSURLResponse *requestResponse;
+//    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+//    
+//    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+//    
+//    NSData *data = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSError *e = nil;
+//    jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &e];
+//    
+//    if (!jsonArray) {
+//        NSLog(@"Error parsing JSON: %@", e);
+//    } else {
+////        for(NSDictionary *item in jsonArray) {
+////            NSLog(@"Item: %@", item);
+////        }
+//    }
 }
 
 #pragma mark - MKMapViewDelegate methods.
@@ -99,9 +114,40 @@
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
-        NSLog([NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude]);
-        NSLog([NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude]);
+        //float long = currentLocation.coordinate.longitude;
+        longitude = [[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude] copy];
+        lat = [[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude] copy];
+        NSLog(longitude);
+        NSLog(lat);
+        
+        //GET request
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        NSString *urlLoc = @"http://192.168.0.114:9000/api/locations?lat=";
+        NSString *urlTwo = @"&lon=";
+        NSString *finalURL = [[NSString stringWithFormat:@"%@%@%@%@", urlLoc, lat, urlTwo, longitude] copy];
+        NSLog(finalURL);
+        [request setURL:[NSURL URLWithString:finalURL]];
+        [request setHTTPMethod:@"GET"];
+        
+        NSURLResponse *requestResponse;
+        NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+        
+        NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+        
+        NSData *data = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError *e = nil;
+        jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &e];
+        
+        if (!jsonArray) {
+            NSLog(@"Error parsing JSON: %@", e);
+        } else {
+            //        for(NSDictionary *item in jsonArray) {
+            //            NSLog(@"Item: %@", item);
+            //        }
+        }
     }
+    [locationManager stopUpdatingLocation];
 }
 
 
@@ -126,7 +172,7 @@
         return [searchResults count];
         
     } else {
-        return [locations count];
+        return 10;//MIN(10, [jsonArray count]);
     }
 }
 
@@ -140,20 +186,14 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LocationTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSDictionary *temp = [locations objectAtIndex:indexPath.row];
-    NSLog(@"We currently have %ld models available", [temp count]);
-    for (id key in temp) {
-        NSLog(@"There are %@ %@'s in stock", temp[key], key);
-    }
+    NSDictionary *currentPlace = [jsonArray objectAtIndex:indexPath.row];
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.locationLabel.text = [searchResults objectAtIndex:indexPath.row];
     } else {
-        cell.locationLabel.text = @"Location"; //[temp objectForKey:@"Location"];
-        cell.numPeopleLabel.text = @"numPeople"; //[temp objectForKey:@"numPeople"];
+        cell.locationLabel.text = [currentPlace objectForKey:@"name"];
+        int pop = [[currentPlace objectForKey:@"population"] intValue];
+        cell.numPeopleLabel.text = [NSString stringWithFormat:@"%d", pop];
     }
-//    cell.locationLabel.text = @"Location"; //[temp objectForKey:@"Location"];
-//    cell.numPeopleLabel.text = @"numPeople"; //[temp objectForKey:@"numPeople"];
-    
     return cell;
 }
 
@@ -165,9 +205,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%@", indexPath);
-    //selectedPost = [posts objectAtIndex:indexPath.row];
-    //currentTitle = @"Test Title";
-    //numPeople = @"100";
+    NSDictionary *currentPlace = [jsonArray objectAtIndex:indexPath.row];
+    currentTitle = [currentPlace objectForKey:@"name"];
+    int pop = [[currentPlace objectForKey:@"population"] intValue];
+    numPeople = [NSString stringWithFormat:@"%d", pop];
     [self performSegueWithIdentifier:@"toPost" sender:self];
 }
 
@@ -182,7 +223,8 @@
         //sets correct post for the detail post to load
         PostViewController *postVC = [segue destinationViewController];
         //forumVC.post = selectedPost;
-        //postVC.title.text = [currentTitle copy];
+        postVC.title = currentTitle;
+        postVC.numPeople = [NSString stringWithFormat:@"%@%@", numPeople, @" people here"];
     }
 }
 
