@@ -22,6 +22,9 @@
 		A3F4AE7F19E0DBD400ED8E8D /* LocationTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */; };
 		A3F4AE8519E0DCE000ED8E8D /* LocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */; };
 		A3F4AE8719E0E82300ED8E8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4AE8619E0E82300ED8E8D /* MapKit.framework */; };
+		A3F4AE8A19E0EF5600ED8E8D /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */; };
+		A3F4AE8E19E0EFB700ED8E8D /* PostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */; };
+		A3F4AE9119E0F03400ED8E8D /* PostTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,11 @@
 		A3F4AE8319E0DCE000ED8E8D /* LocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableCell.h; sourceTree = "<group>"; };
 		A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableCell.m; sourceTree = "<group>"; };
 		A3F4AE8619E0E82300ED8E8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A3F4AE8819E0EF5600ED8E8D /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableCell.xib; sourceTree = "<group>"; };
+		A3F4AE8F19E0F03400ED8E8D /* PostTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableCell.h; sourceTree = "<group>"; };
+		A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +121,7 @@
 				A3F4AE0019E0A23000ED8E8D /* LaunchScreen.xib */,
 				A3F4ADF119E0A23000ED8E8D /* Supporting Files */,
 				A3F4AE7E19E0DBD400ED8E8D /* LocationTableCell.xib */,
+				A3F4AE8D19E0EFB700ED8E8D /* PostTableCell.xib */,
 			);
 			path = Pique;
 			sourceTree = "<group>";
@@ -163,6 +172,10 @@
 				A3F4AE7C19E0D95200ED8E8D /* LocationViewController.m */,
 				A3F4AE8319E0DCE000ED8E8D /* LocationTableCell.h */,
 				A3F4AE8419E0DCE000ED8E8D /* LocationTableCell.m */,
+				A3F4AE8819E0EF5600ED8E8D /* PostViewController.h */,
+				A3F4AE8919E0EF5600ED8E8D /* PostViewController.m */,
+				A3F4AE8F19E0F03400ED8E8D /* PostTableCell.h */,
+				A3F4AE9019E0F03400ED8E8D /* PostTableCell.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -251,6 +264,7 @@
 				A3F4AE3B19E0CC2C00ED8E8D /* Main.storyboard in Resources */,
 				A3F4ADFF19E0A23000ED8E8D /* Images.xcassets in Resources */,
 				A3F4AE7F19E0DBD400ED8E8D /* LocationTableCell.xib in Resources */,
+				A3F4AE8E19E0EFB700ED8E8D /* PostTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,10 +282,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F4AE9119E0F03400ED8E8D /* PostTableCell.m in Sources */,
 				A3F4ADF719E0A23000ED8E8D /* AppDelegate.m in Sources */,
 				A3F4AE7D19E0D95200ED8E8D /* LocationViewController.m in Sources */,
 				A3F4ADF419E0A23000ED8E8D /* main.m in Sources */,
 				A3F4AE8519E0DCE000ED8E8D /* LocationTableCell.m in Sources */,
+				A3F4AE8A19E0EF5600ED8E8D /* PostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

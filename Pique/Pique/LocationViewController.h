@@ -10,6 +10,7 @@
 #import "LocationTableCell.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "PostViewController.h"
 
 @interface LocationViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate,CLLocationManagerDelegate> {
     CLLocationManager *locationManager;

@@ -16,6 +16,8 @@
     NSDictionary *locationFour;
     NSArray *searchResults;
     NSMutableArray *loc;
+    NSString *currentTitle;
+    NSString *numPeople;
 }
 
 @end
@@ -160,32 +162,29 @@
     return 65;
 }
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-    searchResults = [loc filteredArrayUsingPredicate:resultPredicate];
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
+    NSLog(@"%@", indexPath);
+    //selectedPost = [posts objectAtIndex:indexPath.row];
+    //currentTitle = @"Test Title";
+    //numPeople = @"100";
+    [self performSegueWithIdentifier:@"toPost" sender:self];
 }
 
 
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"toPost"]) {
+        //sets correct post for the detail post to load
+        PostViewController *postVC = [segue destinationViewController];
+        //forumVC.post = selectedPost;
+        //postVC.title.text = [currentTitle copy];
+    }
 }
-*/
+
 
 @end
