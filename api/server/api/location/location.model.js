@@ -6,8 +6,9 @@ var mongoose = require('mongoose'),
 var LocationSchema = new Schema({
   lat: Number,
   lon: Number,
-  population: Number,
-  name: String
+  population: {type: Number, default: 0},
+  name: String,
+  googleId: String
 });
 
 
@@ -19,5 +20,24 @@ LocationSchema
       'longitude': this.lon
     };
   });
+
+
+LocationSchema.methods = {
+
+  checkIn: function(error) {
+    this.population += 1;
+    this.save(function(err) {
+      if (err) { error(err); }
+    });
+  },
+
+  checkOut: function(error) {
+    this.population -= 1;
+    this.save(function(err) {
+      if (err) { error(err); }
+    })
+  }
+
+}
 
 module.exports = mongoose.model('Location', LocationSchema);

@@ -1,7 +1,10 @@
 'use strict';
 
+var keys = require('../../config/local.env.js');
 var _ = require('lodash'),
-    geolib = require('geolib');
+    geolib = require('geolib'),
+    GooglePlaces = require('google-places'),
+    places = new GooglePlaces(keys.PLACES_API_KEY);
 var Phone = require('./phone.model');
 var Post = require('../post/post.model');
 var Location = require('../location/location.model');
@@ -20,7 +23,11 @@ exports.show = function(req, res) {
   Phone.findById(req.params.id, function (err, phone) {
     if(err) { return handleError(res, err); }
     if(!phone) { return res.send(404); }
-    return res.json(phone);
+    getPosts(req.params.id, function(posts) {
+      return res.json(200, _.extend(phone.toObject(), {posts: posts}));
+    }, function(err) {
+      return handleError(res, err);
+    })
   });
 };
 
@@ -39,11 +46,32 @@ exports.update = function(req, res) {
     if (err) { return handleError(res, err); }
     if(!phone) { return res.send(404); }
     var updated = _.merge(phone, req.body);
-    updateLocation(req.lat, req.lon);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, phone);
     });
+  });
+};
+
+exports.updateLocation = function(req, res) {
+  Phone.findById(req.params.id, function (err, phone) {
+    if (err) { return handleError(res, err); }
+    if (!phone) { return res.send(404); }
+    var now = Date();
+    var oldLatLng = {
+      lat: phone.lat,
+      lon: phone.lon,
+      date: now,
+      googleId: phone.googleId
+    }
+    phone.history.push(oldLatLng);
+    phone.lat = req.body.lat;
+    phone.lon = req.body.lon;
+    updateLocation(phone, oldLatLng);
+    phone.save(function(err, phone) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, phone);
+    })
   });
 };
 
@@ -60,30 +88,84 @@ exports.destroy = function(req, res) {
 };
 
 exports.test = function(req, res) {
-  updateLoction(1, 1, function(shortest) {
-    return res.json(200, {one : shortest} );
-  })
+  updateLocation(41.53481, -75.736349);
+  return res.json(200, {});
 }
 
-function getPosts(number, success, error) {
-  Post.find({"_author" : number}, function (err, posts) {
+function getPosts(id, success, error) {
+  Post.find({"_author" : id}, function (err, posts) {
     if (err) { return error(err)}
     return success(posts);
   })
 }
 
-function updateLoction(lat, lon, cb) {
+function updateLocation(phone, old, success, error) {
+  var lat = phone.lat;
+  var lon = phone.lon;
   var latlng = {
     latitude: lat,
     longitude: lon
   };
 
-  Location.find(function(err, locations) {
-    if(err) { return handleError(res, err); }
-    var orderedDistances = _.sortBy(locations, function(l) {
-      return geolib.getDistance(latlng, l.latlng)
+  places.search({location: [lat, lon], radius: 20}, function(err, res) {
+    var filtered = _.filter(res.results, function(r) {
+      return !_.contains(r.types, 'political');
     });
-    cb(orderedDistances[0]);
+
+    var locations = _.sortBy(filtered, function(l) {
+      var locationLatLng = {
+        latitude: l.geometry.location.lat,
+        longitude: l.geometry.location.lng
+      }
+      return geolib.getDistance(latlng, locationLatLng)
+    });
+
+    var nearest = locations[0];
+    if (!nearest) { return; }
+    var nearestLatLon = {
+      latitude: nearest.geometry.location.lat,
+      longitude: nearest.geometry.location.lng,
+    }
+    if (!old.googleId && geolib.getDistance(latlng, nearestLatLon) > 40) { return; } //not in a place
+    if (old.googleId === nearest.id) { return; } //in same place as before
+    if (old.googleId) { //check out of old place if it is not current place
+      Location.findOne({googleId: old.googleId}, function(err, location) {
+        if (err) { return error(err); }
+        if (!location) { return; }
+        location.checkOut(function(err) {
+          if (err) {
+            return error(err);
+          }
+        })
+      })
+    }
+
+    Location.findOne({googleId: nearest.id}, function(err, location) {
+      if (err) { return error(err); }
+      phone.googleId = nearest.id;
+      phone.save(function(err) {
+        if (err) { return error(err); }
+      })
+      if (!location) {
+        var newLoc = {
+          lat: nearest.geometry.location.lat,
+          lon: nearest.geometry.location.lng,
+          population: 1,
+          name: nearest.name,
+          googleId: nearest.id
+        }
+        Location.create(newLoc, function(err, location) {
+          console.log(location);
+          if (err) { return error(err) }
+        });
+      } else {
+        location.checkIn(function(err) {
+          if (err) {
+            return error(err);
+          }
+        })
+      }
+    })
   })
 }
 

@@ -6,7 +6,14 @@ var mongoose = require('mongoose'),
 var PhoneSchema = new Schema({
   number: String,
   lat: Number,
-  lon: Number
+  lon: Number,
+  googleId: String,
+  history: [{
+    lat: Number,
+    lon: Number,
+    googleId: String,
+    date: Date
+  }]
 });
 
 module.exports = mongoose.model('Phone', PhoneSchema);

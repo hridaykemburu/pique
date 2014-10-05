@@ -6,10 +6,10 @@ var controller = require('./phone.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/test', controller.test);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
+router.post('/:id/location', controller.updateLocation)
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 

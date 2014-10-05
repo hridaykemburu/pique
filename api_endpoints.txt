@@ -1,0 +1,50 @@
+1. Login (one time):
+  POST to "/api/phones/" with
+    {}
+  returns
+    {
+      _id: <PHONEID>
+    }
+  Store PHONEID locally
+
+2. Update (in the background):
+    POST to "/api/phones/<PHONEID>/location" with
+      {
+        lat: <LATITUDE INT>
+        lon: <LONGITUDE INT>
+      }
+    returns
+      {}
+
+3. Get nearby locations:
+    GET to "/api/locations?lat=<LAT INT>&lon=<LON INT>&term=<SEARCH TERM>"
+    returns
+      [{
+        _id: <LOC ID>
+        name: <Location Name>
+        population: <Location population>
+      }]
+
+4. Get specific locations:
+    GET to "/api/locations/<LOC ID>/"
+      returns
+        {
+          posts: [{
+            _id: <POST ID>
+            upvotes: [Array of userIds who upvoted],
+            downvotes: [Array of userIds who downvoted],
+            date: <DATE>
+          }]
+        }
+
+5. Get specific post:
+    GET to "/api/posts/<POST ID>"
+      returns
+      {
+        location: <LOC ID>
+        comments: [{
+          upvotes: [],
+          downvotes: [],
+          date: <DATE>
+        }]
+      }

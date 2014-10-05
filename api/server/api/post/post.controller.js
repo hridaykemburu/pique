@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Post = require('./post.model');
+var Comment = require('../comment/comment.model');
 
 // Get list of posts
 exports.index = function(req, res) {
@@ -16,7 +17,11 @@ exports.show = function(req, res) {
   Post.findById(req.params.id, function (err, post) {
     if(err) { return handleError(res, err); }
     if(!post) { return res.send(404); }
-    return res.json(post);
+    getComments(req.params.id, function(comments) {
+      return res.json(_.extend(post.toObject(), {comments: comments || []}));
+    }, function(err) {
+      handleError(res, err);
+    })
   });
 };
 
@@ -53,6 +58,49 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+exports.upvote = function(req, res) {
+  Post.findById(req.params.id, function (err, post) {
+    if(err) { return handleError(res, err); }
+    if(!post) { return res.send(404); }
+    var uid = req.uid;
+    var inDown = _.indexOf(post.downvotes, uid)
+    if (inDown > 0) {
+      post.downvotes.splice(inDown, 1);
+    }
+    post.upvotes.push(uid);
+    post.upvotes = _.uniq(post.upvotes);
+    post.save(function(err, post) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, post);
+    });
+  });
+};
+
+exports.downvote = function(req, res) {
+  Post.findById(req.params.id, function (err, post) {
+    if(err) { return handleError(res, err); }
+    if(!post) { return res.send(404); }
+    var uid = req.uid;
+    var inUp = _.indexOf(post.upvotes, uid)
+    if (inUp > 0) {
+      post.downvotes.splice(inUp, 1);
+    }
+    post.downvotes.push(uid);
+    post.downvotes = _.uniq(post.downvotes);
+    post.save(function(err, post) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, post);
+    });
+  });
+};
+
+function getComments(id, success, error) {
+  Comment.find({"_post" : id}, function (err, comments) {
+    if (err) { return error(err)}
+    return success(comments);
+  })
+}
 
 function handleError(res, err) {
   return res.send(500, err);
